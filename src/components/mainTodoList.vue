@@ -1,13 +1,16 @@
 <script setup>
 import { ref } from 'vue'
 
-const dataList = ref([]);
+const dataList = ref([])
 
-const newTitle = ref({ title: '' });
+const newTitle = ref({ title: '' })
 
 function submitForm() {
-    dataList.value.push({ ...newTitle.value });
-    newTitle.value.title = '';
+    dataList.value.push({ ...newTitle.value })
+    newTitle.value.title = ''
+}
+function deleteList(index){
+    dataList.value.splice(index, 1)
 }
 </script>
 
@@ -19,13 +22,17 @@ function submitForm() {
             <button type="submit">Criar Tarefa</button>
         </form>
         <ul>
-            <li v-for="list in dataList" :key="list.title">{{ list.title }}</li>
+            <li v-for="list, index in dataList" :key="index">
+                {{ list.title }}
+                <button @click="deleteList(index)">X</button>
+            </li>
         </ul>
     </div>
 </template>
 
 <style scoped>
-input {
+input,
+button {
     background-color: transparent;
 }
 </style>
