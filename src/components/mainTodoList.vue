@@ -6,8 +6,12 @@ const dataList = ref([])
 const newTitle = ref({ title: '' })
 
 function submitForm() {
-    dataList.value.push({ ...newTitle.value })
-    newTitle.value.title = ''
+    if (newTitle.value.title){
+        dataList.value.push({ ...newTitle.value })
+        newTitle.value.title = ''
+    }else{
+        alert('O campo não pode estar vazio')
+    }
 }
 function deleteList(index){
     dataList.value.splice(index, 1)
