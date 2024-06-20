@@ -40,21 +40,46 @@ function deleteList(index){
                 <button type="submit">Criar Tarefa</button>
             </div>
         </form>
-        <ul>
-            <li v-for="list, index in dataList" :key="index">
+        <hr>
+        <ul class="mainList">
+            <li class="titleList" v-for="list, index in dataList" :key="index">
                 {{ list.title }}
                 <ul>
-                    <li>
+                    <li class="descriptionList">
                         {{ list.description }}
                     </li>
                 </ul>
-                <button @click="deleteList(index)">X</button>
+                <div class="deleteBtn">
+                    <button @click="deleteList(index)">Excluir task</button>
+                </div>
             </li>
         </ul>
     </div>
 </template>
 
 <style scoped>
+.mainList .titleList{
+    margin-top: 20px;
+    text-align: start;
+    border: 1px solid white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    text-align: justify;
+}
+ul .titleList{
+    font-size: 1.8rem;
+}
+ul .descriptionList{
+    font-size: 1rem;
+}
+.deleteBtn button{
+    padding: 5px 10px;
+    border: 1px #818CF8 solid;
+    border-radius: 10px;
+    background-color: transparent;
+    color: #818CF8;
+}
 #main{
     background-color: #333333;
     border: solid 1px #818CF8;
