@@ -1,23 +1,23 @@
 <script setup>
 import { ref } from 'vue'
 
-const dataList = ref([
-    {description:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias illo voluptates obcaecati consequatur ea sequi assumenda at, repellendus culpa repudiandae odio corporis, sed cumque magni cupiditate. Eum eveniet porro voluptatum.", title:"teste"},
-    {description:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias illo voluptates obcaecati consequatur ea sequi assumenda at, repellendus culpa repudiandae odio corporis, sed cumque magni cupiditate. Eum eveniet porro voluptatum.", title:"teste"},
-    {description:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias illo voluptates obcaecati consequatur ea sequi assumenda at, repellendus culpa repudiandae odio corporis, sed cumque magni cupiditate. Eum eveniet porro voluptatum.", title:"teste"},
-    {description:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias illo voluptates obcaecati consequatur ea sequi assumenda at, repellendus culpa repudiandae odio corporis, sed cumque magni cupiditate. Eum eveniet porro voluptatum.", title:"teste"},
-    {description:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias illo voluptates obcaecati consequatur ea sequi assumenda at, repellendus culpa repudiandae odio corporis, sed cumque magni cupiditate. Eum eveniet porro voluptatum.", title:"teste"},
-])
+const dataList = ref([])
 
 const newTitle = ref({})
 
 function submitForm() {
     if (newTitle.value.title){
-        dataList.value.push({ ...newTitle.value })
+        dataList.value.push({ 
+            ...newTitle.value,
+            complete: false
+        })
         newTitle.value = {}
     }else{
         alert('O campo não pode estar vazio')
     }
+}
+function completeList(index){
+    dataList.value[index].complete = !dataList.value[index].complete
 }
 function deleteList(index){
     dataList.value.splice(index, 1)
@@ -42,15 +42,20 @@ function deleteList(index){
         </form>
         <hr>
         <ul class="mainList">
-            <li class="titleList" v-for="list, index in dataList" :key="index">
+            <li v-for="(list, index) in dataList" :key="index" :class="['titleList', { complete: list.complete }]">
                 {{ list.title }}
                 <ul>
-                    <li class="descriptionList">
+                    <li :class="{ complete: list.complete }">
                         {{ list.description }}
                     </li>
                 </ul>
-                <div class="deleteBtn">
-                    <button @click="deleteList(index)">Excluir task</button>
+                <div class="mainBtn">
+                    <div class="listBtn">
+                        <button @click="completeList(index)">Concluir tarefa</button>
+                    </div>
+                    <div class="listBtn">
+                        <button @click="deleteList(index)">Excluir tarefa</button>
+                    </div>
                 </div>
             </li>
         </ul>
@@ -58,28 +63,6 @@ function deleteList(index){
 </template>
 
 <style scoped>
-.mainList .titleList{
-    margin-top: 20px;
-    text-align: start;
-    border: 1px solid white;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    text-align: justify;
-}
-ul .titleList{
-    font-size: 1.8rem;
-}
-ul .descriptionList{
-    font-size: 1rem;
-}
-.deleteBtn button{
-    padding: 5px 10px;
-    border: 1px #818CF8 solid;
-    border-radius: 10px;
-    background-color: transparent;
-    color: #818CF8;
-}
 #main{
     background-color: #333333;
     border: solid 1px #818CF8;
@@ -136,5 +119,34 @@ h1{
   cursor: pointer;
   border: 2px solid #818CF8;
   border-radius: 10px;
+}
+.mainList .titleList{
+    margin-top: 20px;
+    text-align: start;
+    border: 1px solid white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    text-align: justify;
+}
+ul .titleList{
+    font-size: 1.8rem;
+}
+ul .descriptionList{
+    font-size: 1rem;
+}
+ul .complete{
+    text-decoration: line-through;
+}
+.mainBtn{
+    display: flex;
+    gap: 10px;
+}
+.listBtn button{
+    padding: 5px 10px;
+    border: 1px #818CF8 solid;
+    border-radius: 10px;
+    background-color: transparent;
+    color: #818CF8;
 }
 </style>
