@@ -45,7 +45,7 @@ function deleteList(index){
             <li v-for="(list, index) in dataList" :key="index" :class="['titleList', { complete: list.complete }]">
                 {{ list.title }}
                 <ul>
-                    <li :class="{ complete: list.complete }">
+                    <li :class="['descriptionList', {complete: list.complete }]">
                         {{ list.description }}
                     </li>
                 </ul>
