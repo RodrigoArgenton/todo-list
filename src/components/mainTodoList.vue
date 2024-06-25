@@ -1,33 +1,33 @@
 <script setup>
 import { ref } from 'vue'
+import { useStore } from 'vuex';
 
-const dataList = ref([])
+//inicia a chamada
+const store = useStore()
+const dataList = store.getters.dataList //recebe todas as task
 
 const newTitle = ref({})
 
-function submitForm() {
-    if (newTitle.value.title){
-        dataList.value.push({ 
-            ...newTitle.value,
-            complete: false
-        })
+function addTask(){
+    if(newTitle.value.title){
+        store.dispatch('addTask', newTitle.value)
         newTitle.value = {}
     }else{
-        alert('O campo não pode estar vazio')
+        alert('O campo titulo não pode estr em branco')
     }
 }
-function completeList(index){
-    dataList.value[index].complete = !dataList.value[index].complete
+function completeTask(index){
+    store.dispatch('completeTask', index)
 }
-function deleteList(index){
-    dataList.value.splice(index, 1)
+function deleteTask(index){
+    store.dispatch('deleteTask', index)
 }
 </script>
 
 <template>
     <div id="main">
         <h1>Todo List</h1>
-        <form @submit.prevent="submitForm" id="mainForm">
+        <form @submit.prevent="addTask" id="mainForm">
             <div class="coolinput">
                 <label for="input" class="text">Titulo:</label>
                 <input type="text" v-model="newTitle.title" placeholder="Digite o titulo" name="input" class="input">
@@ -51,10 +51,10 @@ function deleteList(index){
                 </ul>
                 <div class="mainBtn">
                     <div class="listBtn">
-                        <button @click="completeList(index)">Concluir tarefa</button>
+                        <button @click="completeTask(index)">Concluir tarefa</button>
                     </div>
                     <div class="listBtn">
-                        <button @click="deleteList(index)">Excluir tarefa</button>
+                        <button @click="deleteTask(index)">Excluir tarefa</button>
                     </div>
                 </div>
             </li>

@@ -23,11 +23,11 @@ const store = createStore({
     addTask({commit}, item){
       commit('addTask', item)
     },
-    completeTask({commit}, item){
-      commit('completeTask', item)
+    completeTask({commit}, index){
+      commit('completeTask', index)
     },
-    deleteTask({commit}, item){
-      commit('deleteTask', item)
+    deleteTask({commit}, index){
+      commit('deleteTask', index)
     }
   },
   getters: {
