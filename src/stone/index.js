@@ -9,7 +9,7 @@ const store = createStore({
     addTask(state, item){
       state.dataList.push({
         ...item,
-        complite: false
+        complete: false
       })
     },
     completeTask(state, index){
