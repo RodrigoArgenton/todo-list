@@ -1,5 +1,5 @@
 <script setup>
-import mainTodoList from './components/mainTodoList.vue'
+import mainTodoList from './view/home.vue'
 </script>
 
 <template>
