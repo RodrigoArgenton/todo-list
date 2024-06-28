@@ -6,14 +6,17 @@ const items = [
     {
         title: 'Home',
         value: 'Home',
+        'prepend-icon': 'mdi-home-outline',
     },
     {
         title: 'Adicionar Task',
         value: 'bar',
+        'prepend-icon': 'mdi-file-edit-outline',
     },
     {
         title: 'Listar Tasks',
         value: 'fizz',
+        'prepend-icon': 'mdi-list-box-outline',
     },
 ]
 </script>
@@ -24,6 +27,12 @@ const items = [
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer" temporary>
-      <v-list :items="items"></v-list>
+      <v-list>
+        <v-list-item v-for="item, index in items" :key="index" :prepend-icon="item['prepend-icon']">
+            <v-list-item-content>
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+        </v-list-item>
+      </v-list>
     </v-navigation-drawer>
 </template>
