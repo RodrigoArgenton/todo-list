@@ -1,13 +1,20 @@
+<script setup>
+import AppBar from './components/AppBar.vue'
+import AddTask from './components/AddTask.vue'
+
+</script>
+
 <template>
   <v-app>
-    <v-main>
-      <HelloWorld />
+    <AppBar/>
+    <v-main id="mainContainer">
+      <AddTask/>
     </v-main>
-
-    <AppFooter />
   </v-app>
 </template>
 
-<script setup>
-  //
-</script>
+<style scoped>
+#mainContainer {
+  background-color: black;
+}
+</style>
