@@ -11,9 +11,6 @@ function popup(){
 
 </script>
 <template>
-    <v-btn @click="popup">
-        Open Dialog
-    </v-btn>
     <v-dialog
     v-model="isDialogOpen"
     width="600px"
