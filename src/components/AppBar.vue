@@ -1,5 +1,11 @@
 <script setup>
 import { ref } from 'vue'
+import { useStore } from 'vuex'
+
+const store = useStore()
+function openDialog(){
+    store.dispatch('popup')
+}
 
 const drawer = ref(false)
 const items = [
@@ -28,7 +34,7 @@ const items = [
 
     <v-navigation-drawer v-model="drawer" temporary>
       <v-list>
-        <v-list-item v-for="item, index in items" :key="index" :prepend-icon="item['prepend-icon']">
+        <v-list-item v-for="item, index in items" :key="index" :prepend-icon="item['prepend-icon']" @click="item.title === 'Adicionar Task' ? openDialog() : null">
             <v-list-item-content>
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
             </v-list-item-content>
