@@ -7,9 +7,9 @@ import GetTask from './components/GetTask.vue'
 <template>
   <v-app>
     <AppBar/>
-    <v-main class="d-flex flex-column align-center ma-5">
-      <AddTask></AddTask>
+    <v-main class="d-flex flex-column align-center mt-5">
       <GetTask></GetTask>
+      <AddTask></AddTask>
     </v-main>
   </v-app>
 </template>
