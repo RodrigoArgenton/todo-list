@@ -1,6 +1,6 @@
 <script setup>
-import GetTask from '@/components/GetTask.vue'
+import OpenTask from '@/components/OpenTask.vue'
 </script>
 <template>
-    <GetTask></GetTask>
+    <OpenTask></OpenTask>
 </template>

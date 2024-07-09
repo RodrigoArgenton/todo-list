@@ -15,10 +15,10 @@ function completeTask(index){
 
 <template>
     <v-card width="900">
-        <v-list-item v-for="item, index in dataList" :key="index">
+        <v-list-item v-for="item, index in dataList" :key="index" v-show="item.complete === false">
             <v-list-item-title>{{ item.title }}</v-list-item-title>
             <v-list-item-subtitle v-show="item.description">{{ item.description }}</v-list-item-subtitle>
-            <div class="d-flex justify-end ">
+            <div class="d-flex justify-end">
                 <v-btn 
                     prepend-icon="mdi-trash-can-outline" 
                     variant="plain" 
@@ -42,6 +42,5 @@ function completeTask(index){
             </div>
             <v-divider></v-divider>
         </v-list-item>
-
     </v-card>
 </template>

@@ -1,6 +1,6 @@
 <script setup>
-
+import CompletedTask from '@/components/CompletedTask.vue'
 </script>
 <template>
-    <h1>Completed task</h1>
+    <CompletedTask/>
 </template>
