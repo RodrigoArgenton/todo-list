@@ -16,6 +16,12 @@ const store = createStore({
     popup(state){
       state.isDialogOpen = !state.isDialogOpen
     },
+    insertTask(state, data){
+      state.dataList.push({
+        ...data,
+        complete: false
+      })   
+    },
     deleteTask(state, index){
       state.dataList.splice(index, 1)
     }
@@ -23,6 +29,9 @@ const store = createStore({
   actions: {
     popup({commit}){
       commit('popup')
+    },
+    insertTask({commit}, data){
+      commit('insertTask', data)
     },
     deleteTask({commit}, index){
       commit('deleteTask', index)

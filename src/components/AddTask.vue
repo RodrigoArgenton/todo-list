@@ -1,12 +1,16 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
 
 const store = useStore()
 const isDialogOpen = computed(() => store.getters.isDialogOpen)
+const newTask = ref({})
 
 function popup(){
   store.dispatch('popup')
+}
+function insertTask(data){
+    store.dispatch('insertTask', newTask.value)
 }
 
 </script>
@@ -24,14 +28,14 @@ function popup(){
                 </v-card-title>
             </div>
             <v-form>
-                <v-text-field label="Titulo"></v-text-field>
-                <v-textarea label="Descrição"></v-textarea>
+                <v-text-field label="Titulo" v-model="newTask.title"></v-text-field>
+                <v-textarea label="Descrição" v-model="newTask.description"></v-textarea>
                 <div class="d-flex justify-end gc-2">
                 <div>
                     <v-btn variant="text" @click="popup" >Cancelar</v-btn>
                 </div>
                 <div>
-                    <v-btn variant="tonal">Enviar</v-btn>
+                    <v-btn variant="tonal" @click="insertTask(newTask)">Enviar</v-btn>
                 </div>
                 </div>
             </v-form>
