@@ -39,7 +39,9 @@ const store = createStore({
   },
   getters: {
     isDialogOpen: state => state.isDialogOpen,
-    dataList: state => state.dataList
+    dataList: state => state.dataList,
+    openTask: state => state.dataList.filter(task => !task.complete).length,
+    allTask: state => state.dataList.length
   }
 })
 
