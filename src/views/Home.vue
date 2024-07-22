@@ -3,14 +3,15 @@
     import CreatedTaskReport from '../components/home/CreatedTaskReport.vue'
     import ProductionTaskReport from '../components/home/ProductionTaskReport.vue'
     import TimelineTask from '../components/home/TimelineTask.vue'
+    import ModelReport from '../components/home/models/ModelReport.vue'
 </script>
 <template>
     <div class="d-flex ga-2">
         <div>
-            <OpenTaskReport/>
+            <ModelReport title="Tarefas em aberto" subtitle="7" progress="50"/>
         </div>
         <div>
-            <CreatedTaskReport/>
+            <ModelReport title="Tarefas Criadas" subtitle="17" progress="89"/>
         </div>
         <div>
             <ProductionTaskReport/>

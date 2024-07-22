@@ -1,5 +1,21 @@
 <script setup>
-const teste = 80
+    import {defineProps} from 'vue'
+
+    const props = defineProps({
+        title:{
+            type: String,
+            require: true
+        },
+        subtitle:{
+            type: String,
+            require: true
+        },
+        progress:{
+            type: String,
+            require: true
+        }
+    })
+
 </script>
 <template>
     <v-card
@@ -8,18 +24,18 @@ const teste = 80
     >
         <template v-slot:title>
             <v-card-item>
-                <v-card-title>Tarefas criadas</v-card-title>
+                <v-card-title>{{ title }}</v-card-title>
             </v-card-item>
         </template>
         <v-card-text class="text-h2">
             <v-row>
                 <v-col cols="6" class="text-center">
-                    10
+                    {{ subtitle }}
                 </v-col>
                 <v-col cols="6">
                     <div class="text-center">
                         <v-progress-circular :model-value="teste" :rotate="360" :size="100" :width="15" color="teal" class="text-subtitle-1">
-                            <template v-slot:default> {{ teste }}% </template>
+                            <template v-slot:default> {{ progress }}% </template>
                         </v-progress-circular>
                     </div>
                 </v-col>
