@@ -1,6 +1,4 @@
 <script setup>
-    import OpenTaskReport from '../components/home/OpenTaskReport.vue'
-    import CreatedTaskReport from '../components/home/CreatedTaskReport.vue'
     import ProductionTaskReport from '../components/home/ProductionTaskReport.vue'
     import TimelineTask from '../components/home/TimelineTask.vue'
     import ModelReport from '../components/home/models/ModelReport.vue'

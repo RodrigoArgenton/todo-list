@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue'
 import { useStore } from 'vuex'
 
 const store = useStore()
@@ -11,6 +11,9 @@ function deleteTask(index){
 function completeTask(index){
     store.dispatch('completeTask', index)
 }
+onMounted(() => {
+  store.dispatch('fetchTask')
+})
 </script>
 
 <template>

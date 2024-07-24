@@ -1,5 +1,5 @@
 import { createStore } from "vuex"
-
+import api from '../services/api'
 
 const store = createStore({
   state: {
@@ -9,6 +9,9 @@ const store = createStore({
   mutations: {
     popup(state){
       state.isDialogOpen = !state.isDialogOpen
+    },
+    setTasks(state, data){
+      state.dataList = data
     },
     insertTask(state, data){
       state.dataList.push({
@@ -26,6 +29,14 @@ const store = createStore({
   actions: {
     popup({commit}){
       commit('popup')
+    },
+    async fetchTask({ commit }) {
+      try {
+        const response = await api.getTasks()
+        commit('setTasks', response.data)
+      } catch (error) {
+        console.error('Error fetching tasks:', error)
+      }
     },
     insertTask({commit}, data){
       commit('insertTask', data)
