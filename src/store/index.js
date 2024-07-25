@@ -14,10 +14,7 @@ const store = createStore({
       state.dataList = data
     },
     insertTask(state, data){
-      state.dataList.push({
-        ...data,
-        complete: false
-      })   
+      state.dataList.push(data)  
     },
     deleteTask(state, index){
       state.dataList.splice(index, 1)
@@ -38,8 +35,14 @@ const store = createStore({
         console.error('Error fetching tasks:', error)
       }
     },
-    insertTask({commit}, data){
-      commit('insertTask', data)
+    async insertTask({commit}, data){
+      try {
+        const response = await api.postTask(data)
+        commit('insertTask', data)
+        console.log(response)
+      } catch (error) {
+        console.log(error)
+      }
     },
     deleteTask({commit}, index){
       commit('deleteTask', index)

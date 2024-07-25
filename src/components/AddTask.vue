@@ -4,7 +4,9 @@ import { useStore } from 'vuex'
 
 const store = useStore()
 const isDialogOpen = computed(() => store.getters.isDialogOpen)
-const data = ref({})
+const data = ref({
+    complete: false
+})
 
 function popup(){
   store.dispatch('popup')
@@ -12,7 +14,9 @@ function popup(){
 function insertTask(){
     if(data.value.title){
         store.dispatch('insertTask', data.value)
-        data.value = {}
+        data.value = {
+            complete: false
+        }
     }else{
         alert('O campo title é obrigatório!')
     }
