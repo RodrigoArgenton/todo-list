@@ -22,7 +22,7 @@
             <ModelReport title="Tarefas em aberto" :subtitle="openTask" :progress="porcentageOpenTask"/>
         </div>
         <div>
-            <ModelReport title="Tarefas Criadas" subtitle="17" progress="89"/>
+            <ModelReport title="Tarefas Criadas hoje" :subtitle="allTask" progress="100"/>
         </div>
         <div>
             <ProductionTaskReport/>
