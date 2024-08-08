@@ -14,9 +14,12 @@ export default{
         return apiClient.get('/task')
     },
     postTask(task){
-      return apiClient.post('/task', task)
+        return apiClient.post('/task', task)
     },
     deleteTask(id){
         return apiClient.delete(`/task/${id}`)
+    },
+    completeTask(id, task){
+        return apiClient.put(`/task/${id}`, { complete: task });
     }
 }

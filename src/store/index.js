@@ -7,25 +7,28 @@ const store = createStore({
     dataList: []
   },
   mutations: {
-    popup(state){
+    popup(state) {
       state.isDialogOpen = !state.isDialogOpen
     },
-    setTasks(state, data){
+    setTasks(state, data) {
       state.dataList = data
     },
-    insertTask(state, data){
-      state.dataList.push(data)  
+    insertTask(state, data) {
+      state.dataList.push(data)
     },
-    deleteTask(state, id){
-      const index = state.dataList.findIndex(task => task.id === id)
-      state.dataList.splice(index, 1)
+    deleteTask(state, id) {
+      const taskIndex = state.dataList.findIndex(task => task.id === id)
+      state.dataList.splice(taskIndex, 1)
     },
-    completeTask(state, index){
-      state.dataList[index].complete = !state.dataList[index].complete
+    completeTask(state, updatedTask) {
+      const taskIndex = state.dataList.findIndex(task => task.id === updatedTask.id)
+      if (taskIndex !== -1) {
+        state.dataList[taskIndex].complete = updatedTask.complete
+      }
     }
   },
   actions: {
-    popup({commit}){
+    popup({ commit }) {
       commit('popup')
     },
     async fetchTask({ commit }) {
@@ -36,16 +39,16 @@ const store = createStore({
         console.error('Error fetching tasks:', error)
       }
     },
-    async insertTask({commit}, data){
+    async insertTask({ commit }, data) {
       try {
         const response = await api.postTask(data)
-        commit('insertTask', data)
+        commit('insertTask', response.data)
         console.log(response)
       } catch (error) {
         console.log(error)
       }
     },
-    async deleteTask({commit}, id){
+    async deleteTask({ commit }, id) {
       try {
         const response = await api.deleteTask(id)
         console.log(response)
@@ -54,8 +57,17 @@ const store = createStore({
         console.log(error)
       }
     },
-    completeTask({commit}, index){
-      commit('completeTask', index)
+    async completeTask({ commit, state }, id) {
+      try {
+        const updatedTask = state.dataList.find(task => task.id === id)
+        updatedTask.complete = !updatedTask.complete
+        const response = await api.completeTask(id, updatedTask.complete)
+        if (updatedTask) {
+          commit('completeTask', updatedTask)
+        }
+      } catch (error) {
+        console.log(error)
+      }
     }
   },
   getters: {

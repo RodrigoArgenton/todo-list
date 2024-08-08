@@ -24,7 +24,7 @@ function completeTask(index){
                     density="comfortable" 
                     size="small" 
                     class="ma-2"
-                    @click="deleteTask(index)"
+                    @click="deleteTask(item.id)"
                 >
                     Excluir
                 </v-btn>
@@ -34,7 +34,7 @@ function completeTask(index){
                     density="comfortable" 
                     size="small" 
                     class="ma-2"
-                    @click="completeTask(index)"
+                    @click="completeTask(item.id)"
                     >
                     Desfazer
                 </v-btn>
