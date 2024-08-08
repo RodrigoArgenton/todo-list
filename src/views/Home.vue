@@ -19,10 +19,10 @@
 <template>
     <div class="d-flex ga-2">
         <div>
-            <ModelReport title="Tarefas em aberto" :subtitle="openTask" :progress="porcentageOpenTask"/>
+            <ModelReport title="Tarefas em aberto" :subtitle="openTask" :progress="porcentageOpenTask" buttonMessage="Ver todas as tarefas em aberto"/>
         </div>
         <div>
-            <ModelReport title="Tarefas Criadas hoje" :subtitle="allTask" progress="100"/>
+            <ModelReport title="Tarefas Criadas hoje" :subtitle="allTask" progress="100" buttonMessage="Ver todas as tarefas"/>
         </div>
         <div>
             <ProductionTaskReport/>

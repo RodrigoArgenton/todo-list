@@ -13,6 +13,10 @@
         progress:{
             type: String,
             require: true
+        },
+        buttonMessage:{
+            type: String,
+            require: true
         }
     })
 
@@ -46,7 +50,7 @@
         <v-card-actions>
             <v-btn
                 to="/task"
-            >Ver todas as tarefas</v-btn>
+            >{{ buttonMessage }}</v-btn>
         </v-card-actions>
     </v-card>
 </template>
