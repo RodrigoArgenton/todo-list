@@ -34,7 +34,7 @@
                 </v-col>
                 <v-col cols="6">
                     <div class="text-center">
-                        <v-progress-circular :model-value="teste" :rotate="360" :size="100" :width="15" color="teal" class="text-subtitle-1">
+                        <v-progress-circular :model-value="progress" :rotate="360" :size="100" :width="15" color="teal" class="text-subtitle-1">
                             <template v-slot:default> {{ progress }}% </template>
                         </v-progress-circular>
                     </div>
