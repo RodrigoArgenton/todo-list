@@ -19,7 +19,7 @@ onMounted(() => {
 <template>
     <v-card width="900">
         <v-list-item v-for="item, index in dataList" :key="item.id" v-show="item.complete === false">
-            <v-list-item-title>{{ item.title }} {{ item.id }}</v-list-item-title>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
             <v-list-item-subtitle v-show="item.description">{{ item.description }}</v-list-item-subtitle>
             <div class="d-flex justify-end">
                 <v-btn 
