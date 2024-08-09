@@ -3,7 +3,7 @@
     import ProductionTaskReport from '../components/home/ProductionTaskReport.vue'
     import TimelineTask from '../components/home/TimelineTask.vue'
     import ModelReport from '../components/home/models/ModelReport.vue'
-    import { computed } from 'vue'
+    import { computed, onMounted } from 'vue'
 
 
     const store = useStore()
@@ -12,6 +12,10 @@
     const tasksDueToday = computed(() => store.getters.tasksDueToday)
     const porcentageOpenTask = computed(() => ((openTask.value / allTask.value) * 100).toFixed(0))
     const porcentagetasksDueToday = computed(() => ((tasksDueToday.value / allTask.value) * 100).toFixed(0))
+
+    onMounted(() => {
+        store.dispatch('fetchTask')
+    })
 </script>
 <template>
     <div class="d-flex ga-2">
