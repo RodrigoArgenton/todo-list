@@ -74,7 +74,11 @@ const store = createStore({
     isDialogOpen: state => state.isDialogOpen,
     dataList: state => state.dataList,
     openTask: state => state.dataList.filter(task => !task.complete).length,
-    allTask: state => state.dataList.length
+    allTask: state => state.dataList.length,
+    tasksDueToday: (state) => {
+      const today = new Date().toISOString().split('T')[0];
+      return state.dataList.filter(task => task.dueDate.split('T')[0] === today).length;
+    }
   }
 })
 

@@ -9,12 +9,9 @@
     const store = useStore()
     const openTask = computed(() => store.getters.openTask)
     const allTask = computed(() => store.getters.allTask)
-    const porcentageOpenTask = computed(() => {
-        if(allTask.value == 0){
-            return 0
-        }
-        return (openTask.value / allTask.value) * 100
-    })
+    const tasksDueToday = computed(() => store.getters.tasksDueToday)
+    const porcentageOpenTask = computed(() => ((openTask.value / allTask.value) * 100).toFixed(0))
+    const porcentagetasksDueToday = computed(() => ((tasksDueToday.value / allTask.value) * 100).toFixed(0))
 </script>
 <template>
     <div class="d-flex ga-2">
@@ -22,7 +19,7 @@
             <ModelReport title="Tarefas em aberto" :subtitle="openTask" :progress="porcentageOpenTask" buttonMessage="Ver todas as tarefas em aberto"/>
         </div>
         <div>
-            <ModelReport title="Tarefas Criadas hoje" :subtitle="allTask" progress="100" buttonMessage="Ver todas as tarefas"/>
+            <ModelReport title="Tarefas vencendo hoje" :subtitle="tasksDueToday" :progress="porcentagetasksDueToday" buttonMessage="Ver todas as tarefas"/>
         </div>
         <div>
             <ProductionTaskReport/>
