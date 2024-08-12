@@ -3,7 +3,7 @@ import { computed, onMounted } from 'vue'
 import { useStore } from 'vuex'
 
 const store = useStore()
-const dataList = computed(() => store.getters.dataList)
+const dataList = computed(() => store.getters.dataList.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate)))
 const todayDate = new Date().toISOString().split('T')[0]
 
 function deleteTask(index){
@@ -13,7 +13,12 @@ function completeTask(index){
     store.dispatch('completeTask', index)
 }
 function formatDate(dateString) {
-    return new Date(dateString).toLocaleDateString()
+    return new Date(dateString).toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        timeZone: 'UTC'
+    })
 }
 function isDueDate(createdAt) {
     if (!createdAt) {
