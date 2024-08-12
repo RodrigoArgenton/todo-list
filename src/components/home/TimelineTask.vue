@@ -1,100 +1,48 @@
 <script setup>
+import { computed } from 'vue';
+import { useStore } from 'vuex'
 
+
+const store = useStore()
+const dataList = computed(() => store.getters.dataList)
+const todayDate = new Date().toISOString().split('T')[0]
+
+function isDueDate(createdAt) {
+    if (!createdAt) {
+        return false
+    }
+    try {
+        const taskDate = new Date(createdAt).toISOString().split('T')[0]
+        return taskDate === todayDate
+    } catch (error) {
+        console.error('Invalid date:', createdAt)
+        return false
+    }
+}
 </script>
 <template>
-    <v-timeline class="w-75">
-        <v-timeline-item
-        dot-color="purple-lighten-3"
-        fill-dot
-        >
-            <v-card>
-                <v-card-title class="bg-purple-lighten-3">
-                <v-icon
-                    class="me-4"
-                    icon="mdi-alert-outline"
-                    size="large"
-                    color="red"
-                ></v-icon>
-                <h2 class="font-weight-light">
-                    Title 1
-                </h2>
-                </v-card-title>
-                <v-card-text>
-                Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit.
-                </v-card-text>
-            </v-card>
-        </v-timeline-item>
-
-        <v-timeline-item
-            dot-color="deep-purple-lighten-2"
-            size="x-small"
-            fill-dot
-        >
-            <v-card>
-                <v-card-title class="bg-deep-purple-lighten-2 justify-end">
-                <v-icon
-                    class="me-4"
-                    icon="mdi-alert-outline"
-                    size="large"
-                    color="red"
-                ></v-icon>
-                <h2 class="me-4 font-weight-light">
-                    Title 2
-                </h2>
-                </v-card-title>
-                <v-card-text>
-                Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit.
-                </v-card-text>
-            </v-card>
-        </v-timeline-item>
-
-        <v-timeline-item
-        dot-color="cyan-lighten-1"
-        fill-dot
-        >
-            <v-card>
-                <v-card-title class="bg-cyan-lighten-1">
-                <h2 class="font-weight-light">
-                    Title 3
-                </h2>
-                </v-card-title>
-                <v-card-text>
-                Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit.
-                </v-card-text>
-            </v-card>
-        </v-timeline-item>
-
-        <v-timeline-item
-        dot-color="red-lighten-1"
-        size="x-small"
-        fill-dot
-        >
-            <v-card>
-                <v-card-title class="bg-red-lighten-1 justify-end">
-                <h2 class="me-4 font-weight-light">
-                    Title 4
-                </h2>
-                </v-card-title>
-                <v-card-text>
-                Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit.
-                </v-card-text>
-            </v-card>
-        </v-timeline-item>
-
-        <v-timeline-item
-        dot-color="green-lighten-1"
-        fill-dot
-        >
-            <v-card>
-                <v-card-title class="bg-green-lighten-1">
-                <h2 class="font-weight-light">
-                    Title 5
-                </h2>
-                </v-card-title>
-                <v-card-text>
-                Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit.
-                </v-card-text>
-            </v-card>
-        </v-timeline-item>
-    </v-timeline>
+    <v-card class="w-100">
+        <div class="d-flex justify-space-between align-center ma-2">
+            <div>
+                <v-card-title class="text-h5">Hoje</v-card-title>
+            </div>
+            <div class="d-flex ga-2">
+                <v-btn variant="tonal">Excluir</v-btn>
+                <v-btn variant="tonal">Concluir</v-btn>
+            </div>
+        </div>
+        <v-list lines="one" v-for="item in dataList" class="ma-4" v-show="isDueDate(item.dueDate)">
+            <div class="d-flex align-center">
+                <div>
+                    <v-checkbox-btn v-model="item.id"></v-checkbox-btn>
+                </div>
+                <div>
+                    <v-list-item
+                        :title="item.title"
+                    ></v-list-item>
+                </div>
+            </div>
+            <v-divider class="border-opacity-25"></v-divider>
+        </v-list>
+    </v-card>
 </template>

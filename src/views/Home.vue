@@ -18,18 +18,20 @@
     })
 </script>
 <template>
-    <div class="d-flex ga-2">
-        <div>
-            <ModelReport title="Tarefas em aberto" :subtitle="openTask" :progress="porcentageOpenTask" buttonMessage="Ver todas as tarefas em aberto"/>
+    <div class="d-flex flex-column align-center">
+        <div class="d-flex ga-2 w-100 justify-center">
+            <div>
+                <ModelReport title="Tarefas em aberto" :subtitle="openTask" :progress="porcentageOpenTask" buttonMessage="Ver todas as tarefas em aberto"/>
+            </div>
+            <div>
+                <ModelReport title="Tarefas vencendo hoje" :subtitle="tasksDueToday" :progress="porcentagetasksDueToday" buttonMessage="Ver todas as tarefas"/>
+            </div>
+            <div>
+                <ProductionTaskReport/>
+            </div>
         </div>
-        <div>
-            <ModelReport title="Tarefas vencendo hoje" :subtitle="tasksDueToday" :progress="porcentagetasksDueToday" buttonMessage="Ver todas as tarefas"/>
+        <div class="d-flex pa-5 w-75">
+            <TimelineTask/>
         </div>
-        <div>
-            <ProductionTaskReport/>
-        </div>
-    </div>
-    <div class="d-flex justify-center pa-5">
-        <TimelineTask/>
     </div>
 </template>
