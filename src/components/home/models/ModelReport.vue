@@ -7,7 +7,7 @@
             require: true
         },
         subtitle:{
-            type: String,
+            type: Number,
             require: true
         },
         progress:{
