@@ -40,9 +40,7 @@ const items = [
     <v-navigation-drawer v-model="drawer" temporary>
       <v-list>
         <v-list-item v-for="item, index in items" :key="index" :prepend-icon="item['prepend-icon']" @click="item.title === 'Adicionar Task' ? openDialog() : null" :to="item['to']" > <!--Estudar o pq o "to" não sobrepõe o click, uma vez que pode ser uma falha do sistema ou bug-->
-            <v-list-item-content>
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
