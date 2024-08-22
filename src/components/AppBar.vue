@@ -8,7 +8,7 @@ function openDialog(){
     store.dispatch('popup')
 }
 
-const drawer = ref(false)
+const drawer = ref(true)
 const items = [
     {
         title: 'Home',
@@ -37,7 +37,7 @@ const items = [
       <v-toolbar-title>Todo List</v-toolbar-title>
       <AddTask/>
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" temporary>
+    <v-navigation-drawer v-model="drawer" permanent>
       <v-list>
         <v-list-item v-for="item, index in items" :key="index" :prepend-icon="item['prepend-icon']" @click="item.title === 'Adicionar Task' ? openDialog() : null" :to="item['to']" > <!--Estudar o pq o "to" não sobrepõe o click, uma vez que pode ser uma falha do sistema ou bug-->
             <v-list-item-title>{{ item.title }}</v-list-item-title>
