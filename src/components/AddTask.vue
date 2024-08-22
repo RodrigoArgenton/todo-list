@@ -4,7 +4,7 @@ import { useStore } from 'vuex'
 
 const store = useStore()
 const isDialogOpen = computed(() => store.getters.isDialogOpen)
-const selectedDate = ref(null)
+const selectedDate = ref(new Date())
 const data = ref({
     complete: false,
     dueDate: selectedDate
