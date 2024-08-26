@@ -23,7 +23,7 @@ function isDueDate(createdAt) {
 <template>
     <v-card class="w-100">
         <div class="d-flex justify-space-between align-center ma-2">
-            <div>
+            <div class="w-100">
                 <v-card-title class="text-h5">Hoje</v-card-title>
             </div>
             <div class="d-flex ga-2">
