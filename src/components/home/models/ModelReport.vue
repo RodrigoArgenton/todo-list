@@ -24,7 +24,6 @@
 <template>
     <v-card
         prepend-icon="mdi-check-all"
-        width="400"
     >
         <template v-slot:title>
             <v-card-item>

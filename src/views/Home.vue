@@ -18,8 +18,8 @@
     })
 </script>
 <template>
-    <div class="d-flex  pa-5">
-        <div class="d-flex mr-2 w-100 m">
+    <!-- <div class="d-flex flex-wrap pa-5">
+        <div class="d-flex flex-1-0 mr-2">
             <div class="w-100">
                 <TimelineTask/>
             </div>
@@ -31,9 +31,24 @@
             <div>
                 <ModelReport title="Tarefas vencendo hoje" :subtitle="tasksDueToday" :progress="porcentagetasksDueToday" buttonMessage="Ver todas as tarefas"/>
             </div>
-            <!-- <div>
+            <div>
                 <ProductionTaskReport/>
-            </div> -->
+            </div>
         </div>
-    </div>
+    </div> -->
+    <v-container>
+        <v-row>
+            <v-col cols="12" sm="12" lg="8">
+                <TimelineTask/>
+            </v-col>
+            <v-col cols="12" lg="4" class="w-100">
+              <v-col class="pa-0 pb-2">
+                <ModelReport title="Tarefas em aberto" :subtitle="openTask" :progress="porcentageOpenTask" buttonMessage="Ver todas as tarefas em aberto"/>
+              </v-col>
+              <v-col class="pa-0">
+                <ModelReport title="Tarefas vencendo hoje" :subtitle="tasksDueToday" :progress="porcentagetasksDueToday" buttonMessage="Ver todas as tarefas"/>
+              </v-col>  
+            </v-col>
+        </v-row>
+    </v-container>
 </template>
