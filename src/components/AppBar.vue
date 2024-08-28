@@ -8,7 +8,7 @@ function openDialog(){
     store.dispatch('popup')
 }
 
-const drawer = ref(true)
+const drawer = ref(false)
 const items = [
     {
         title: 'Home',
