@@ -11,7 +11,7 @@
     const allTask = computed(() => store.getters.allTask)
     const tasksDueToday = computed(() => store.getters.tasksDueToday)
     const porcentageOpenTask = computed(() => ((openTask.value / allTask.value) * 100).toFixed(0))
-    const porcentagetasksDueToday = computed(() => ((tasksDueToday.value / allTask.value) * 100).toFixed(0))
+    const porcentagetasksDueToday = computed(() => ((tasksDueToday.value / openTask.value) * 100).toFixed(0))
 
     onMounted(() => {
         store.dispatch('fetchTask')
