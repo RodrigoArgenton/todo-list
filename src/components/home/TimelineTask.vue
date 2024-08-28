@@ -1,11 +1,12 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useStore } from 'vuex'
 
 
 const store = useStore()
 const dataList = computed(() => store.getters.dataList)
 const todayDate = new Date().toISOString().split('T')[0]
+const selected = ref([])
 
 function isDueDate(createdAt) {
     if (!createdAt) {
@@ -19,6 +20,11 @@ function isDueDate(createdAt) {
         return false
     }
 }
+async function deleteTask(index){
+    for(let id of index){
+        await store.dispatch('deleteTask', id)
+    }
+}
 </script>
 <template>
     <v-card class="w-100">
@@ -27,14 +33,17 @@ function isDueDate(createdAt) {
                 <v-card-title class="text-h5">Hoje</v-card-title>
             </div>
             <div class="d-flex ga-2">
-                <v-btn variant="tonal">Excluir</v-btn>
+                <v-btn variant="tonal" @click="deleteTask(selected)">Excluir</v-btn>
                 <v-btn variant="tonal">Concluir</v-btn>
             </div>
         </div>
         <v-list lines="one" v-for="item in dataList" class="ma-4" v-show="isDueDate(item.dueDate)">
             <div class="d-flex align-center">
                 <div>
-                    <v-checkbox-btn v-model="item.id"></v-checkbox-btn>
+                    <v-checkbox-btn 
+                    v-model="selected"
+                    :value="item.id"
+                    ></v-checkbox-btn>
                 </div>
                 <div>
                     <v-list-item
