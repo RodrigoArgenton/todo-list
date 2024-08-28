@@ -24,6 +24,13 @@ async function deleteTask(index){
     for(let id of index){
         await store.dispatch('deleteTask', id)
     }
+    return selected.value = []
+}
+async function completeTask(index){
+    for(let id of index){
+        await store.dispatch('completeTask', id)
+    }
+    return selected.value = []
 }
 </script>
 <template>
@@ -34,10 +41,10 @@ async function deleteTask(index){
             </div>
             <div class="d-flex ga-2">
                 <v-btn variant="tonal" @click="deleteTask(selected)">Excluir</v-btn>
-                <v-btn variant="tonal">Concluir</v-btn>
+                <v-btn variant="tonal" @click="completeTask(selected)">Concluir</v-btn>
             </div>
         </div>
-        <v-list lines="one" v-for="item in dataList" class="ma-4" v-show="isDueDate(item.dueDate)">
+        <v-list lines="one" v-for="item in dataList" class="ma-4" v-show="isDueDate(item.dueDate) && item.complete == false">
             <div class="d-flex align-center">
                 <div>
                     <v-checkbox-btn 
