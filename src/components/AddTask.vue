@@ -6,6 +6,7 @@ const store = useStore()
 const isDialogOpen = computed(() => store.getters.isDialogOpen)
 const selectedDate = ref(new Date())
 const data = ref({
+    description: '',
     complete: false,
     dueDate: selectedDate
 })
