@@ -76,8 +76,12 @@ const store = createStore({
     openTask: state => state.dataList.filter(task => !task.complete).length,
     allTask: state => state.dataList.length,
     tasksDueToday: (state) => {
-      const today = new Date().toISOString().split('T')[0];
-      return state.dataList.filter(task => task.dueDate.split('T')[0] === today && task.complete === false).length;
+      const today = new Date().toISOString().split('T')[0]
+      return state.dataList.filter(task => task.dueDate.split('T')[0] === today && task.complete === false).length
+    },
+    tasksDueAll: (state) => {
+      const today = new Date().toISOString().split('T')[0]
+      return state.dataList.filter(task => task.dueDate.split('T')[0] < today && task.complete === false).length
     }
   }
 })
