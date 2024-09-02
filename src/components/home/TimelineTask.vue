@@ -53,9 +53,9 @@ async function completeTask(index){
                     ></v-checkbox-btn>
                 </div>
                 <div>
-                    <v-list-item
-                        :title="item.title"
-                    ></v-list-item>
+                    <v-list-item>
+                        <div>{{ item.title }}</div>
+                    </v-list-item>
                 </div>
             </div>
             <v-divider class="border-opacity-25"></v-divider>
