@@ -37,7 +37,7 @@
               <ModelReport title="Tarefas vencendo hoje" :subtitle="tasksDueToday" :progress="calcPorcentage(tasksDueToday, openTask)" buttonMessage="Ver todas as tarefas vencendo hoje"/>
             </v-col>
             <v-col class="pa-0">
-              <ModelReport title="Tarefas atrasadas" :subtitle="tasksDueAll" :progress="calcPorcentage(tasksDueAll, allTask)" buttonMessage="Ver todas as tarefas atrasadas"/>
+              <ModelReport title="Tarefas atrasadas" :subtitle="tasksDueAll" :progress="calcPorcentage(tasksDueAll, openTask)" buttonMessage="Ver todas as tarefas atrasadas"/>
             </v-col>  
           </v-col>
       </v-row>
