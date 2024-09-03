@@ -6,7 +6,7 @@ import AppBar from './components/AppBar.vue'
 <template>
   <v-app>
     <AppBar/>
-    <v-main class="mt-5">
+    <v-main>
       <router-view/>
     </v-main>
   </v-app>
