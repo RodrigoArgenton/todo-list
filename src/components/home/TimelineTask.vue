@@ -1,7 +1,6 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
-
 
 const store = useStore()
 const dataList = computed(() => store.getters.dataList)
@@ -35,15 +34,38 @@ async function completeTask(index){
 </script>
 <template>
     <v-card class="w-100">
-        <div class="d-flex justify-space-between align-center ma-2">
-            <div>
-                <v-card-title class="text-h5">Hoje</v-card-title>
-            </div>
-            <div class="d-flex ga-2">
-                <v-btn variant="tonal" @click="deleteTask(selected)">Excluir</v-btn>
-                <v-btn variant="tonal" @click="completeTask(selected)">Concluir</v-btn>
-            </div>
-        </div>
+        <v-container>
+            <v-row class="d-flex justify-space-between">
+                <v-col cols="6" sm="6">
+                    <v-card-title class="text-h5">Hoje</v-card-title>
+                </v-col>
+                <!-- está coluna aparece somente em telas xs e sm -->
+                <v-col sm="6" class="d-flex d-md-none justify-end">
+                    <v-menu>
+                        <template v-slot:activator="{ props }">
+                            <v-btn icon="mdi-dots-vertical" variant="text" v-bind="props"></v-btn>
+                        </template>
+                        <v-list>
+                            <v-list-item>
+                                <v-btn variant="text" @click="deleteTask(selected)">Excluir</v-btn> 
+                                <v-btn variant="text" @click="completeTask(selected)">Concluir</v-btn>
+                            </v-list-item>
+                        </v-list>
+                    </v-menu>
+                </v-col>
+                <!-- está coluna aparece somente para telas maiores que md -->
+                <v-col cols="6" sm="4" xl="3" class="d-none d-md-flex align-center">
+                    <v-row>
+                        <v-col xs="12" sm="6" class="d-flex justify-end">
+                            <v-btn variant="tonal" @click="deleteTask(selected)">Excluir</v-btn> 
+                        </v-col>
+                        <v-col xs="12" sm="6" class="d-flex justify-end">
+                            <v-btn variant="tonal" @click="completeTask(selected)">Concluir</v-btn>
+                        </v-col>
+                    </v-row>
+                </v-col>
+            </v-row>
+        </v-container>
         <v-list lines="one" v-for="item in dataList" class="ma-4" v-show="isDueDate(item.dueDate) && item.complete == false">
             <div class="d-flex align-center">
                 <div>
