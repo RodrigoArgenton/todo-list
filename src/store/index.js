@@ -10,64 +10,57 @@ const store = createStore({
     popup(state) {
       state.isDialogOpen = !state.isDialogOpen
     },
-    setTasks(state, data) {
-      state.dataList = data
+    async fetchTask(state) {
+      try {
+        const response = await api.getTasks()
+        state.dataList = response.data
+      } catch (error) {
+        console.error('Error fetching tasks:', error)
+      }
     },
-    insertTask(state, data) {
-      state.dataList.push(data)
+    async insertTask(state, data) {
+      try {
+        const response = await api.postTask(data)
+        state.dataList.push(response.data)
+      } catch (error) {
+        console.log(error)
+      }
     },
     deleteTask(state, id) {
+      try {
+        api.deleteTask(id)
+      } catch (error) {
+        console.log(error)
+      }
       const taskIndex = state.dataList.findIndex(task => task.id === id)
       state.dataList.splice(taskIndex, 1)
     },
-    completeTask(state, updatedTask) {
-      const taskIndex = state.dataList.findIndex(task => task.id === updatedTask.id)
-      if (taskIndex !== -1) {
-        state.dataList[taskIndex].complete = updatedTask.complete
+    async completeTask(state, id) {
+      try {
+        const updatedTask = state.dataList.find(task => task.id === id)
+        updatedTask.complete = !updatedTask.complete
+        await api.completeTask(id, updatedTask.complete)
+      } catch (error) {
+        console.log(error)
       }
+
     }
   },
   actions: {
     popup({ commit }) {
       commit('popup')
     },
-    async fetchTask({ commit }) {
-      try {
-        const response = await api.getTasks()
-        commit('setTasks', response.data)
-      } catch (error) {
-        console.error('Error fetching tasks:', error)
-      }
+    fetchTask({ commit }) {
+      commit('fetchTask')
     },
     async insertTask({ commit }, data) {
-      try {
-        const response = await api.postTask(data)
-        commit('insertTask', response.data)
-        console.log(response)
-      } catch (error) {
-        console.log(error)
-      }
+      commit('insertTask', data)
     },
     async deleteTask({ commit }, id) {
-      try {
-        const response = await api.deleteTask(id)
-        console.log(response)
-        commit('deleteTask', id)
-      } catch (error) {
-        console.log(error)
-      }
+      commit('deleteTask', id)
     },
-    async completeTask({ commit, state }, id) {
-      try {
-        const updatedTask = state.dataList.find(task => task.id === id)
-        updatedTask.complete = !updatedTask.complete
-        const response = await api.completeTask(id, updatedTask.complete)
-        if (updatedTask) {
-          commit('completeTask', updatedTask)
-        }
-      } catch (error) {
-        console.log(error)
-      }
+    async completeTask({ commit }, id) {
+      commit('completeTask', id)
     }
   },
   getters: {
