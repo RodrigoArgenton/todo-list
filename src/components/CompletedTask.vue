@@ -15,7 +15,7 @@ function completeTask(index){
 <template>
     <v-container>
         <v-row class="d-flex justify-center">
-            <v-col cols="10">
+            <v-col>
                 <v-card>
                     <v-list-item v-for="item, index in dataList" :key="index" v-show="item.complete === true">
                         <v-list-item-title>{{ item.title }}</v-list-item-title>

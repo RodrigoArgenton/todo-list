@@ -38,51 +38,55 @@ onMounted(() => {
 </script>
 
 <template>
-    <v-card class="w-100 ma-2">
-        <v-list-item v-for="item in dataList" :key="item.id" v-show="item.complete === false">
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-            <v-list-item-subtitle v-show="item.description">{{ item.description }}</v-list-item-subtitle>
-            <v-container class="pa-0 ma-0" fluid>
-                <v-row class="ma-0">
-                    <v-col cols="12" md="6" class="pa-0">
-                        <v-btn 
-                            prepend-icon="mdi-calendar-month-outline" 
-                            variant="plain" 
-                            size="small" 
-                            density="compact" 
-                            :class="{dueDateClass: isDueDate(item.dueDate)}"
-                            class="pa-1"
-                        >
-                            {{ formatDate(item.dueDate) }}
-                        </v-btn>
-                    </v-col>
-                    <v-col cols="12" md="6" class="d-flex justify-end">
-                        <v-btn 
-                            prepend-icon="mdi-trash-can-outline" 
-                            variant="plain" 
-                            density="comfortable" 
-                            size="small" 
-                            class="ma-2"
-                            @click="deleteTask(item.id)"
-                        >
-                            Excluir
-                        </v-btn>
-                        <v-btn 
-                            prepend-icon="mdi-check" 
-                            variant="tonal" 
-                            density="comfortable" 
-                            size="small" 
-                            class="ma-2"
-                            @click="completeTask(item.id)"
-                            >
-                            Concluir
-                        </v-btn>
-                    </v-col>
-                </v-row>
-            </v-container>
-            <v-divider></v-divider>
-        </v-list-item>
-    </v-card>
+    <v-container class="pa-0 ma-0">
+        <v-row class="ma-0 pa-0">
+            <v-col class="ma-2 pa-0">
+                <v-card class="w-100">
+                    <v-list-item v-for="item in dataList" :key="item.id" v-show="item.complete === false" class="">
+                        <v-list-item-title>{{ item.title }}</v-list-item-title>
+                        <v-list-item-subtitle v-show="item.description">{{ item.description }}</v-list-item-subtitle>
+                            <v-row class="ma-0">
+                                <v-col cols="12" md="6" class="pa-0">
+                                    <v-btn 
+                                        prepend-icon="mdi-calendar-month-outline" 
+                                        variant="plain" 
+                                        size="small" 
+                                        density="compact" 
+                                        :class="{dueDateClass: isDueDate(item.dueDate)}"
+                                        class="pa-1"
+                                    >
+                                        {{ formatDate(item.dueDate) }}
+                                    </v-btn>
+                                </v-col>
+                                <v-col cols="12" md="6" class="d-flex justify-end">
+                                    <v-btn 
+                                        prepend-icon="mdi-trash-can-outline" 
+                                        variant="plain" 
+                                        density="comfortable" 
+                                        size="small" 
+                                        class="ma-2"
+                                        @click="deleteTask(item.id)"
+                                    >
+                                        Excluir
+                                    </v-btn>
+                                    <v-btn 
+                                        prepend-icon="mdi-check" 
+                                        variant="tonal" 
+                                        density="comfortable" 
+                                        size="small" 
+                                        class="ma-2"
+                                        @click="completeTask(item.id)"
+                                        >
+                                        Concluir
+                                    </v-btn>
+                                </v-col>
+                            </v-row>
+                        <v-divider></v-divider>
+                    </v-list-item>
+                </v-card>
+            </v-col>
+        </v-row>
+    </v-container>
 </template>
 <style scoped>
 .dueDateClass{
