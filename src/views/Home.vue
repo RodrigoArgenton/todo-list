@@ -14,7 +14,7 @@
 
   function calcPorcentage(partialTaskCount, totalTaskCount){
     if(partialTaskCount === 0 || totalTaskCount === 0){
-      return 0
+      return "0"
     }
     return computed(() => ((partialTaskCount / totalTaskCount) * 100).toFixed(0)).value
   }
