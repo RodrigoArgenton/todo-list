@@ -28,22 +28,17 @@ const store = createStore({
     },
     deleteTask(state, id) {
       try {
-        api.deleteTask(id)
+        const taskIndex = state.dataList.findIndex(task => task.id === id)
+        state.dataList.splice(taskIndex, 1)
       } catch (error) {
         console.log(error)
       }
-      const taskIndex = state.dataList.findIndex(task => task.id === id)
-      state.dataList.splice(taskIndex, 1)
     },
-    async completeTask(state, id) {
-      try {
-        const updatedTask = state.dataList.find(task => task.id === id)
-        updatedTask.complete = !updatedTask.complete
-        await api.completeTask(id, updatedTask.complete)
-      } catch (error) {
-        console.log(error)
+    completeTask(state, updatedTask) {
+      const taskIndex = state.dataList.findIndex(task => task.id === updatedTask.id)
+      if (taskIndex !== -1) {
+        state.dataList[taskIndex].complete = updatedTask.complete
       }
-
     }
   },
   actions: {
@@ -53,14 +48,22 @@ const store = createStore({
     fetchTask({ commit }) {
       commit('fetchTask')
     },
-    async insertTask({ commit }, data) {
+    insertTask({ commit }, data) {
       commit('insertTask', data)
     },
     async deleteTask({ commit }, id) {
+      await api.deleteTask(id)
       commit('deleteTask', id)
     },
-    async completeTask({ commit }, id) {
-      commit('completeTask', id)
+    async completeTask({ commit, state }, id) {
+      try {
+        const updatedTask = state.dataList.find(task => task.id === id)
+        updatedTask.complete = !updatedTask.complete
+        await api.completeTask(id, updatedTask.complete)
+        commit('completeTask', updatedTask)
+      } catch (error) {
+        console.log(error)
+      }
     }
   },
   getters: {
