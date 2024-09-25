@@ -9,26 +9,10 @@ function openDialog(){
 }
 
 const drawer = ref(false)
-const items = [
-    {
-        title: 'Home',
-        'prepend-icon': 'mdi-home-outline',
-        'to': '/'
-    },
-    {
-        title: 'Adicionar Task',
-        'prepend-icon': 'mdi-file-edit-outline',
-    },
-    {
-        title: 'Listar Tasks',
-        'prepend-icon': 'mdi-list-box-outline',
-        'to': '/task'
-    },
-    {
-        title: 'Task completas',
-        'prepend-icon': 'mdi-check-all',
-        'to': '/completedtask'
-    },
+const task = [
+    ['Todas', '/task/AllTask', 'mdi-calendar-check-outline'],
+    ['Vencendo', '/task/TodayTask', 'mdi-clock-alert-outline'],
+    ['Atrasadas', '/task/DueTask', 'mdi-alert-box-outline'],
 ]
 </script>
 <template>
@@ -38,10 +22,27 @@ const items = [
       <AddTask/>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" permanent>
-      <v-list>
-        <v-list-item v-for="item, index in items" :key="index" :prepend-icon="item['prepend-icon']" @click="item.title === 'Adicionar Task' ? openDialog() : null" :to="item['to']" > <!--Estudar o pq o "to" não sobrepõe o click, uma vez que pode ser uma falha do sistema ou bug-->
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-        </v-list-item>
-      </v-list>
+        <v-list>
+            <v-list-item prepend-icon="mdi-home-outline" title="Home" to="/"></v-list-item>
+            <v-list-item prepend-icon="mdi-file-edit-outline" title="Adicionar tarefa" @click="openDialog"></v-list-item>
+            <v-list-group value="Task" >
+                <template v-slot:activator="{ props }">
+                    <v-list-item
+                        v-bind="props"
+                        prepend-icon="mdi-list-box-outline"
+                        title="Tarefas"
+                    ></v-list-item>
+                </template>
+                <v-list-item
+                    v-for="([title, path, icon], i) in task"
+                    :key="i"
+                    :title="title"
+                    :value="title"
+                    :to="path"
+                    :prepend-icon="icon"
+                ></v-list-item>
+            </v-list-group>
+            <v-list-item prepend-icon="mdi-check-all" title="Tarefas Completas"></v-list-item>
+        </v-list>
     </v-navigation-drawer>
 </template>
