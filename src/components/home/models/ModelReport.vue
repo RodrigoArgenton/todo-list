@@ -17,6 +17,10 @@
         buttonMessage:{
             type: String,
             require: true
+        },
+        path:{
+            type: String,
+            require: true
         }
     })
 
@@ -48,7 +52,7 @@
 
         <v-card-actions>
             <v-btn
-                to="/task"
+                :to="path"
             >{{ buttonMessage }}</v-btn>
         </v-card-actions>
     </v-card>
