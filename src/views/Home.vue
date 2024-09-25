@@ -31,13 +31,13 @@
           </v-col>
           <v-col cols="12" lg="4" class="w-100">
             <v-col class="pa-0 pb-2">
-              <ModelReport title="Tarefas em aberto" :subtitle="openTask" :progress="calcPorcentage(openTask, allTask)" buttonMessage="Ver todas as tarefas em aberto"/>
+              <ModelReport title="Tarefas em aberto" :subtitle="openTask" :progress="calcPorcentage(openTask, allTask)" buttonMessage="Ver todas as tarefas em aberto" path="/task/AllTask"/>
             </v-col>
             <v-col class="pa-0 pb-2">
-              <ModelReport title="Tarefas vencendo hoje" :subtitle="tasksDueToday" :progress="calcPorcentage(tasksDueToday, openTask)" buttonMessage="Ver todas as tarefas vencendo hoje"/>
+              <ModelReport title="Tarefas vencendo hoje" :subtitle="tasksDueToday" :progress="calcPorcentage(tasksDueToday, openTask)" buttonMessage="Ver todas as tarefas vencendo hoje" path="/task/TodayTask"/>
             </v-col>
             <v-col class="pa-0">
-              <ModelReport title="Tarefas atrasadas" :subtitle="tasksDueAll" :progress="calcPorcentage(tasksDueAll, openTask)" buttonMessage="Ver todas as tarefas atrasadas"/>
+              <ModelReport title="Tarefas atrasadas" :subtitle="tasksDueAll" :progress="calcPorcentage(tasksDueAll, openTask)" buttonMessage="Ver todas as tarefas atrasadas" path="/task/DueTask"/>
             </v-col>  
           </v-col>
       </v-row>
