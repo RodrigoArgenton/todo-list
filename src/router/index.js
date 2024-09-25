@@ -1,6 +1,8 @@
 import CompletedTask from '@/views/CompletedTask.vue'
 import Home from '@/views/Home.vue'
-import Task from '@/views/Task.vue'
+import AllTask from '@/views/Task/index.vue'
+import DueTask from '@/views/Task/DueTask/index.vue'
+import TodayTask from '@/views/Task/TodayTask/index.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 
@@ -11,9 +13,19 @@ const routes = [
     component: Home
   },
   {
-    path: '/task',
-    name: 'Task',
-    component: Task
+    path: '/task/AllTask',
+    name: 'AllTask',
+    component: AllTask
+  },
+  {
+    path: '/task/TodayTask',
+    name: 'TodayTask',
+    component: TodayTask
+  },
+  {
+    path: '/task/DueTask',
+    name: 'DueTask',
+    component: DueTask
   },
   {
     path: '/completedtask',
