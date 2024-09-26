@@ -1,8 +1,7 @@
 <script setup>
   import { useStore } from 'vuex'
-  // import ProductionTaskReport from '../components/home/ProductionTaskReport.vue'
-  import TimelineTask from '../components/home/TimelineTask.vue'
-  import ModelReport from '../components/home/models/ModelReport.vue'
+  import TimelineTask from '../components/models/home/TimelineTask.vue'
+  import ModelReport from '../components/models/ModelReport.vue'
   import { computed, onMounted } from 'vue'
 
 
