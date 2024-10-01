@@ -42,7 +42,7 @@ const task = [
                     :prepend-icon="icon"
                 ></v-list-item>
             </v-list-group>
-            <v-list-item prepend-icon="mdi-check-all" title="Tarefas Completas"></v-list-item>
+            <v-list-item prepend-icon="mdi-check-all" title="Tarefas Completas" to="/completedtask"></v-list-item>
         </v-list>
     </v-navigation-drawer>
 </template>
