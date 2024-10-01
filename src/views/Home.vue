@@ -7,8 +7,8 @@
 
   const store = useStore()
   const openTask = computed(() => store.getters.openTask)
-  const allTask = computed(() => store.getters.allTask)
-  const tasksDueToday = computed(() => store.getters.tasksDueToday)
+  const allTask = computed(() => store.getters.allTask.length)
+  const tasksDueToday = computed(() => store.getters.tasksDueToday.length)
   const tasksDueAll = computed(() => store.getters.tasksDueAll)
 
   function calcPorcentage(partialTaskCount, totalTaskCount){
