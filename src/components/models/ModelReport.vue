@@ -4,23 +4,23 @@
     const props = defineProps({
         title:{
             type: String,
-            required: true
+            Required: true
         },
         subtitle:{
             type: Number,
-            required: true
+            Required: true
         },
         progress:{
             type: String,
-            required: true
+            Required: true
         },
         buttonMessage:{
             type: String,
-            required: true
+            Required: true
         },
         path:{
             type: String,
-            required: true
+            Required: true
         }
     })
 
