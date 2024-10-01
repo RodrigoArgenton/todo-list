@@ -1,6 +1,6 @@
 import CompletedTask from '@/views/CompletedTask.vue'
 import Home from '@/views/Home.vue'
-import AllTask from '@/views/Task/index.vue'
+import AllTask from '@/views/Task/AllTask/index.vue'
 import DueTask from '@/views/Task/DueTask/index.vue'
 import TodayTask from '@/views/Task/TodayTask/index.vue'
 import { createRouter, createWebHistory } from 'vue-router'
